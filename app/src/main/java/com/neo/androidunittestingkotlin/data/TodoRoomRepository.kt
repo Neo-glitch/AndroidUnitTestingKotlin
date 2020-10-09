@@ -30,6 +30,7 @@ class TodoRoomRepository(private val todoDao: TodoDao) : TodoRepository {
 
     private class ToggleAsyncTask(val todoDao: TodoDao) : AsyncTask<String, Unit, Unit>() {
         override fun doInBackground(vararg ids: String?) {
+            // throws illegalState exception ig value is false with message "Todo not found"
             require(todoDao.toggleTodo(ids[0]!!) == 1) { "Todo not found" }
         }
     }
