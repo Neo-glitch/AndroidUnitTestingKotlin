@@ -41,6 +41,13 @@ dependencies {
     // used mockito-inline since all classes in kotlin are closed by default
     testImplementation 'org.mockito:mockito-inline:2.23.0'
     testImplementation 'com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0'
+    
+    // allow us to use the android context for our db test as well async requests and used in spying using mockito
+    testImplementation 'androidx.arch.core:core-testing:2.1.0'
+    testImplementation 'androidx.test:core-ktx:1.2.0'
+    testImplementation 'androidx.test.ext:junit-ktx:1.1.1'
+    testImplementation 'org.robolectric:robolectric:4.3.1'   // needed so that jvm can sim android sys inorder to use some objects
+    testImplementation 'com.jraska.livedata:testing-ktx:1.1.2'   // simplifies some of the complexity of working with LiveData object
 
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'

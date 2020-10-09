@@ -69,13 +69,13 @@ class ListViewModelTest {
     @Test
     fun testAllTodosMultiple(){
         val expected = 3
-        val repository:TodoRepository = mock()    // mocked todoRepository
+        val repository:TodoRepository = mock(verboseLogging = true)    // mocked todoRepository, that logs method called to this repo
 
         // tells mockito how to respond to calls from the mocked obj
         whenever(repository.getAllTodos())
             .thenReturn(MutableLiveData(arrayListOf(
                 Todo("5", "Todo 5", now + day, false, now),
-                Todo("4", "Todo 4", now + day, false, now),
+                Todo("4", "Todo 4", now + day, true, now),
                 Todo("3", "Todo 3", now + day, false, now)
             )))
 

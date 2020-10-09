@@ -5,9 +5,18 @@ import com.neo.androidunittestingkotlin.data.TodoRepository
 import com.nhaarman.mockitokotlin2.*
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNull
+import org.junit.Rule
 import org.junit.Test
+import org.mockito.Mockito
+import org.mockito.junit.MockitoJUnit
 
 class AddViewModelTest {
+
+    // collector rule that allows all verification steps to run regardless of whether
+    // previous verification fails
+    @Rule
+    @JvmField
+    val collector = MockitoJUnit.collector()
 
     @Test
     fun testSaveWithoutDate(){
@@ -22,6 +31,8 @@ class AddViewModelTest {
         val actual = model.save()
 
         assertNull(actual)
+
+        verify(repository).insert(any())
 
         verify(repository).insert(
             argThat {
