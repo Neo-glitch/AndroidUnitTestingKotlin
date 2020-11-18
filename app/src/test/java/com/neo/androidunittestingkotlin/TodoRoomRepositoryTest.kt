@@ -19,9 +19,10 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.ExpectedException
 import org.junit.runner.RunWith
+import org.robolectric.annotation.Config
 import java.lang.RuntimeException
 
-
+@Config(manifest= Config.NONE)
 @RunWith(AndroidJUnit4::class)
 class TodoRoomRepositoryTest {
 
@@ -80,7 +81,6 @@ class TodoRoomRepositoryTest {
         db.todoDao().insert(Todo("4", "Todo 4", now + day, true, now))
         db.todoDao().insert(Todo("3", "Todo 3", now + day, false, now))
 
-
         val repo = TodoRoomRepository(dao)
         val expected = 1
 
@@ -129,7 +129,7 @@ class TodoRoomRepositoryTest {
         val repo = TodoRoomRepository(dao)
         val id = "good"
 
-        repo.toggleTodo(id)
+        val actual = repo.toggleTodo(id)
 
         // assert that dao toggleTodo() is called with that param id
         verify(dao).toggleTodo(id)
